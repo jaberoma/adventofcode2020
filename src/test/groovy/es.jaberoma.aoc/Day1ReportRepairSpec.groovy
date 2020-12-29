@@ -45,7 +45,6 @@ class Day1ReportRepairSpec extends Specification {
 
         then:
         foundNumbers.getNum1() + foundNumbers.getNum2() == DISGUSTING_YEAR
-        foundNumbers.getNum1() * foundNumbers.getNum2() == 0
     }
 
 
