@@ -12,10 +12,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Day1ReportRepair {
+public class ReportRepair {
 
     public static List<Integer> readDay1InputData() throws IOException {
-        try (InputStream inputData = Day1ReportRepair.class.getClassLoader().getResourceAsStream("day1.input")) {
+        try (InputStream inputData = ReportRepair.class.getClassLoader().getResourceAsStream("day1.input")) {
             return new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputData), StandardCharsets.UTF_8))
                     .lines()
                     .map(Integer::valueOf)
