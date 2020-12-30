@@ -2,43 +2,35 @@ package es.jaberoma.aoc.day2;
 
 public class PasswordDetail {
 
-    private Integer minOccurs;
-    private Integer maxOccurs;
-    private Character letter;
-    private String password;
+    private final Integer targetPosition1;
+    private final Integer targetPosition2;
+    private final Character letter;
+    private final String password;
     private boolean valid;
 
-    public PasswordDetail(String detail) {
-        String[] inputParts = detail.split(" ");
-        parseOccurs(inputParts[0]);
-        parseLetter(inputParts[1]);
-        parsePassword(inputParts[2]);
-        fillValidity();
-    }
-
-    private void parseOccurs(String range) {
-        String[] rangeParts = range.split("-");
-        this.minOccurs = Integer.valueOf(rangeParts[0]);
-        this.maxOccurs = Integer.valueOf(rangeParts[1]);
-    }
-
-    private void parseLetter(String letter) {
-        this.letter = letter.charAt(0);
-    }
-
-    private void parsePassword(String password) {
+    public PasswordDetail(Integer targetPosition1, Integer targetPosition2, Character letter, String password) {
+        this.targetPosition1 = targetPosition1;
+        this.targetPosition2 = targetPosition2;
+        this.letter = letter;
         this.password = password;
-    }
-
-    private void fillValidity() {
-        long numberOfLetterAppearanceInPassword = password.chars()
-                .filter(letter -> letter == this.letter)
-                .count();
-        this.valid = this.minOccurs <= numberOfLetterAppearanceInPassword && numberOfLetterAppearanceInPassword <= this.maxOccurs;
+        validate();
     }
 
     public boolean isValid() {
         return this.valid;
     }
 
+    private void validate() {
+        this.valid = (isTargetLetterIn(this.targetPosition1) && !isTargetLetterIn(this.targetPosition2)) ||
+                (isTargetLetterIn(this.targetPosition2) && !isTargetLetterIn(this.targetPosition1));
+    }
+
+    private boolean isTargetLetterIn(Integer position) {
+        int targetPosition = passwordPosition(position);
+        return targetPosition < this.password.length() && this.password.charAt(targetPosition) == this.letter;
+    }
+
+    private Integer passwordPosition(Integer targetPosition) {
+        return targetPosition - 1;
+    }
 }

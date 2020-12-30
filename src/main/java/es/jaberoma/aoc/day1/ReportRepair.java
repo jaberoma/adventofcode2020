@@ -1,27 +1,11 @@
 package es.jaberoma.aoc.day1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class ReportRepair {
-
-    public static List<Integer> readDay1InputData() throws IOException {
-        try (InputStream inputData = ReportRepair.class.getClassLoader().getResourceAsStream("day1.input")) {
-            return new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputData), StandardCharsets.UTF_8))
-                    .lines()
-                    .map(Integer::valueOf)
-                    .collect(Collectors.toList());
-        }
-    }
 
     public static MatchingNumbers numbers(List<Integer> inputNumbers) {
         return find(() -> {

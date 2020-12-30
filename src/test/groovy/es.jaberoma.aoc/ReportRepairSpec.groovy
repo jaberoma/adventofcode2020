@@ -1,8 +1,10 @@
 package es.jaberoma.aoc
 
-import es.jaberoma.aoc.day1.ReportRepair
 import es.jaberoma.aoc.day1.MatchingNumbers
+import es.jaberoma.aoc.day1.ReportRepair
 import spock.lang.Specification
+
+import java.util.stream.Collectors
 
 class ReportRepairSpec extends Specification {
 
@@ -19,7 +21,7 @@ class ReportRepairSpec extends Specification {
 
     void 'get numbers that sum 2020 from day 1 report repair input data'() {
         given:
-        List<Integer> inputData = ReportRepair.readDay1InputData()
+        List<Integer> inputData = readInputFile()
 
         when:
         MatchingNumbers foundNumbers = ReportRepair.numbers(inputData)
@@ -38,13 +40,17 @@ class ReportRepairSpec extends Specification {
 
     void '[Java 8] get numbers that sum 2020 from day 1 report repair input data'() {
         given:
-        List<Integer> inputData = ReportRepair.readDay1InputData()
+        List<Integer> inputData = readInputFile()
 
         when:
         MatchingNumbers foundNumbers = ReportRepair.numbersJava8(inputData)
 
         then:
         foundNumbers.getNum1() + foundNumbers.getNum2() == DISGUSTING_YEAR
+    }
+
+    private static List<Integer> readInputFile() {
+        AocFileReader.read('day1.input').stream().map(Integer::valueOf).collect(Collectors.toList())
     }
 
 

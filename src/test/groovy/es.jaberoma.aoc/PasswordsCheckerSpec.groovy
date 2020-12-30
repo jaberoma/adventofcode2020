@@ -17,15 +17,15 @@ class PasswordsCheckerSpec extends Specification {
         Long validPasswords = PasswordsChecker.getNumberOfValidPasswords(SINGLE_DATA)
 
         then:
-        validPasswords == 2
+        validPasswords == 1
     }
 
     void 'number of valid passwords with day 2 input data'() {
         when:
-        Long validPasswords = PasswordsChecker.getNumberOfValidPasswords(PasswordsChecker.readDay2InputData())
+        Long validPasswords = PasswordsChecker.getNumberOfValidPasswords(AocFileReader.read('day2.input'))
 
         then:
-        validPasswords == 517
+        validPasswords == 284
     }
 
 }
