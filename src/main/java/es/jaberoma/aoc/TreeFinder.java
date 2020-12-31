@@ -5,19 +5,22 @@ import java.util.stream.IntStream;
 
 public class TreeFinder {
 
-    private static final int RIGHT_MOVEMENT = 3;
     private static final Character TREE = '#';
 
-    public static long find(List<String> treeMap) {
+    public static long find(List<String> treeMap, int right, int down) {
         return IntStream.range(1, treeMap.size())
-                .filter(row -> {
-                    int mapLineLength = treeMap.get(row).length();
-                    int rightPosition = RIGHT_MOVEMENT * row;
-                    if (rightPosition >= mapLineLength) {
-                        rightPosition %= mapLineLength;
-                    }
+                .filter(rowNumber -> {
+                    if (down == 1 || rowNumber % down == 0) {
+                        int lineLength = treeMap.get(rowNumber).length();
+                        int rightPosition = right * (rowNumber / down);
+                        if (rightPosition >= lineLength) {
+                            rightPosition %= lineLength;
+                        }
 
-                    return treeMap.get(row).charAt(rightPosition) == TREE;
+                        return treeMap.get(rowNumber).charAt(rightPosition) == TREE;
+                    } else {
+                        return false;
+                    }
                 })
                 .count();
     }
