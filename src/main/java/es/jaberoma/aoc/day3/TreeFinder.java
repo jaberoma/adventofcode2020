@@ -1,4 +1,4 @@
-package es.jaberoma.aoc;
+package es.jaberoma.aoc.day3;
 
 import java.util.List;
 import java.util.stream.IntStream;
