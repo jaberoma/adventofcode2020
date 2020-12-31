@@ -1,5 +1,6 @@
 package es.jaberoma.aoc
 
+import es.jaberoma.aoc.day3.TreeFinder
 import spock.lang.Specification
 import spock.lang.Unroll
 
