@@ -60,4 +60,12 @@ class BoardingPassParserSpec extends Specification {
         then:
         maxSeatId == 838
     }
+
+    void 'My boarding pass finder'() {
+        when:
+        Integer myBoardingPass = BoardingPassParser.myBoardingPass(AocFileReader.read('day5.input'))
+
+        then:
+        myBoardingPass == 714
+    }
 }
